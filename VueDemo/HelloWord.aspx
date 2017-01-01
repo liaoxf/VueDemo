@@ -1,0 +1,78 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="HelloWord.aspx.cs" Inherits="VueDemo.HelloWord" %>
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <script type="text/javascript" src="scripts/vue.js"></script>
+        <title>数据双向绑定、列表、简单事件的处理</title>
+    </head>
+
+    <body>
+        <h4>#Hello World!</h4>
+        <div id="dr01">
+            <p>{{vue_dr01}}</p>
+        </div>
+        <hr />
+        <h4>#数据双向绑定</h4>
+        <div id="dr02">
+            <p>{{ytCode}}</p>
+            <input type="text" v-model="ytCode" />
+        </div>
+        <hr />
+        <h4>#渲染列表</h4>
+        <div id="dr03">
+            <ul>
+                <li v-for="book in books">
+                    {{"name: "+book.name+"; price: "+book.price+"."}}
+                </li>
+            </ul>
+        </div>
+        <hr />
+        <h4>#处理用户输入</h4>
+        <div id="dr04">
+            <p>{{dr04_msg}}</p>
+            <button v-on:click="reverseMsg">reverseMsg</button>
+        </div>
+    </body>
+    <script>
+        var dr01 = new Vue({
+            el: "#dr01",
+            data: {
+                vue_dr01: "hello vue.js!"
+            }
+        });
+        var dr02 = new Vue({
+            el: "#dr02",
+            data: {
+                ytCode: 500331584514
+            }
+        });
+        var dr03 = new Vue({
+            el: "#dr03",
+            data: {
+                books: [{
+                    name: "book01",
+                    price: "price01"
+                }, {
+                    name: "book02",
+                    price: "price02"
+                }, {
+                    name: "book03",
+                    price: "price03"
+                }]
+            }
+        });
+        var dr04 = new Vue({
+            el: "#dr04",
+            data: {
+                dr04_msg: "this is dr04 message!"
+            },
+            methods: {
+                reverseMsg: function() {
+                    this.dr04_msg = this.dr04_msg.split("").reverse().join("");
+                }
+            }
+        });</script>
+
+</html>
